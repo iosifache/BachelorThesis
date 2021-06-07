@@ -1,0 +1,65 @@
+\documentclass[../../main.tex]{subfiles}
+
+\graphicspath{{\subfix{images/}}}
+
+\begin{document}
+
+\chapter{Introducere}
+\label{ch:introduction}
+
+\section{Context}
+\label{sec:introduction_context}
+
+Încă din secolul al XIX-lea, când Charles Babbage a descris primul mecanism capabil să soluționeze automat diferite tipuri de probleme, calculatoarele au evoluat constant. De la acele roți zimțate, s-a trecut ulterior la tuburi vidate și la tranzistori, ultimii fiind grupați inițial în circuite integrate limitate din punct de vedere al numărului lor. În prezent, calculatoarele dețin cipuri electronice fabricate cu ajutorul integrării la scară largă (engl. "\textit{large scale integration}"), având mii de tranzistoare pe centimetru pătrat de silicon. Ele ne ușurează viețile prin avantajele pe care le aduc: automatizarea sarcinilor repetitive sau dificile, stocarea unui volum mare de date și interconectarea cu oameni de pe tot globul pământesc.
+
+Deși această descriere ar putea părea una utopică, trebuie să luăm în considerare și dezavantajele pe care tehnologia le implică, precum \textbf{amenințările spațiului cibernetic}. Cum în fiecare societate, oricât de primordială sau de dezvoltată ar fi ea, au existat de fiecare dată oameni care nu s-au conformat regulilor impuse la nivelul acesteia, același lucru s-a întâmplat și în spațiul cibernetic. A apărut treptat, o dată cu facilitarea accesului la calculatoare, fenomenul de \textbf{crimă cibernetică}, în care persoane rău intenționate folosesc tehnologia pentru a dăuna siguranței cuiva sau pentru a obține beneficii materiale. Tehnicile pe care acești criminali cibernetici le utilizează variază în prezent de la compromiterea de pagini web pentru acces neautorizat la datele confidențiale ale utilizatorilor și până la folosirea de programe cu caracter malițios, pentru compromiterea completă a serverelor sau a dispozitivelor folosite de oamenii obișnuiți.
+
+Cum această creștere a devenit prea accentuată, depășind limitele confortabile în care o persoană specializată și o soluție de securitate bazată pe semnături puteau proteja o rețea informațională, respectiv dispozitive folosite de utilizatori finali, a apărut necesitatea de a avea \textbf{soluții software complexe și automate}, bazate atât pe euristici statice, cât și pe unele dinamice. Acestea au însă dezavantajul rigidității, întrucât ele nu mai evoluează decât prin intermediul unor actualizări care uneori pot fi prea târzii.
+
+Astfel, \textbf{domeniul inteligenței artificiale}, în special cel de învățare a\-utomată pe care îl cuprinde, a fost integrat în aceste soluții pentru a oferi maleabilitatea necesară adaptării la mediului dinamic în care ele funcționează. Modul de interpretare al formatului de fișier a rămas aproximativ același, însă diferențe apar la limitele impuse de euristicile clasice, care au fost înlocuite de unele deduse în mod automat de algoritmi inteligenți.
+
+\section{Stadiul Actual al Tehnologiei}
+\label{sec:introduction_sota}
+
+Autorii "\textit{Survey of Machine Learning Techniques for Malware Analysis}" \cite{ml_malware_survey} au realizat în \textbf{anul 2019} un \textbf{studiu asupra modurilor} în care tehnicile de învățare automată au fost folosite pentru analiza programelor malițioase. Sistemul de operare studiat a fost Windows întrucât acesta este cel mai folosit la nivel mondial pe dispozitivele de tip \textit{desktop}\footnote{\href{https://gs.statcounter.com/os-market-share/desktop/worldwide}{https://gs.statcounter.com/os-market-share/desktop/worldwide}}. Studiul se remarcă prin parcur\-gerea unui număr mare de lucrări publicate și deducerea unor aspecte precum:
+
+\begin{itemize}
+    \item \textbf{Obiectivele}, care relevă tipul de ieșire produs de către soluțiile dezvoltate de către cercetătorii studiilor, se încadrează în detecția programelor maliți\-oase și a familiilor de care aparțin, cât și în analiza similarității unui exemplar, prin compararea lui cu altele, aflate într-un set de date.
+    \item Soluțiile folosesc \textbf{atribute} extrase atât static, cât și dinamic. Unele soluții le folosesc pe ambele, într-o abordare numită hibridă.
+    \item Partea de învățare automată este efectuată prin intermediul tuturor \textbf{tipu\-rilor de algoritmi}: supervizați, nesupervizați și semi-supervizați.
+\end{itemize}
+
+\section{Motivația Lucrării}
+\label{sec:introduction_motivation}
+
+Un lucru interesant pe care l-am putut observa din verificarea lucrărilor pe care studiul de mai sus le menționează este că \textbf{majoritatea nu oferă o soluție} (produs software de sine stătător sau bibliotecă de cod) care să poată fi folosită la scară largă de către posibili beneficiari ai proiectelor lor, de la utilizatorii simpli de dispozitive mobile și de calculatoare personale și până la organizații posesoare de servere și de stații de lucru.
+
+Fiecare studiu își alege un mod de a rezolva problema analizei de programe malițioase, printr-o pereche formată din mulțimea de atribute extrase și din algoritmii de învățare automată ce au fost aplicați. Însă nu reușesc să aducă aproape de utilizatorii finali metodele de analiză pe care le propun, prin oferirea unui cadru ce lasă loc dezvoltărilor ulterioare și integrării de alte abordări.
+
+Pe lângă aceste probleme ce țin de interacțiunea dintre lumea academică și mediul în care organizațiile funcționează, contextul actual de securitate cibernetică impune o atenție ridicată anumitor aspecte. Trebuie avut în considerare \textbf{factorul uman} reprezentat de membrii organizației pentru că el este implicat în majoritatea atacurilor cibernetice\footnote{\fullcite{dbir_2021}}. Întrucât multe compromiteri pleacă de la descărcări și rulări de fișiere malițioase, putem deduce importanța pe care o are o protecție asupra \textbf{formatului de fișiere executabile} folosit pentru sistemele de operare Windows, cât și a aceluia pentru \textbf{platformele de tip Office}\footnote{\fullcite{dbir_2020}}, ce sunt folosite des de membrii oricărui tip de organizații.
+
+Din punct de vedere al analiștilor care fac parte din departamentele de securitate cibernetică ale organizațiilor, putem sublinia faptul că \textbf{analiza manuală a unui fișier malițios modern}, pe care ei o efectuează, durează mult întrucât ele apelează la mecanisme de protejare împotriva analizei, care îngreunează procesul.
+
+În plus, \textbf{contextul} este unul \textbf{foarte dinamic}. Criminalii cibernetici pot recurge la soluții automate de generare a mai multor variante ale aceluiași program malițios, comportament cu care pot eluda cu ușurință o soluție de securitate cu euristici simpliste.
+
+Pe de altă parte, am putut identifica soluții comerciale ce folosesc tehnici de inteligență artificială, precum Kaspersky\footnote{\href{https://www.kaspersky.com/enterprise-security/wiki-section/products/machine-learning-in-cybersecurity}{https://www.kaspersky.com/enterprise-security/wiki-section/products/machine-learning-in-cybersecurity}}, avast\footnote{\href{https://www.mcafee.com/enterprise/en-us/solutions/machine-learning.html}{https://www.mcafee.com/enterprise/en-us/solutions/machine-learning.html}} și McAfee\footnote{\href{https://www.avast.com/technology/ai-and-machine-learning}{https://www.avast.com/technology/ai-and-machine-learning}}. Principalul dezavantaj îl reprezintă însă \textbf{povara financiară} a subscripției sau a cumpărării, ce nu poate fi suportată cu ușurință de o organizație mică, aflată la început de drum.
+
+\section{Obiectivele Lucrării}
+\label{sec:introduction_objectives}
+
+Plecând de la problemele evidențiate anterior, \textbf{ne propunem în această lucrare să demonstrăm că rezultatele analizei de programe malițioase sunt avantajate, prin perspectiva rezultatelor, de folosirea unor teh\-nici de inteligență artificială}, în special de învățare automată. Facem acest lucru prin \textbf{proiectarea unei platforme}, ce plecă de la un set de cerințe funcționale și nefuncționale esențiale. O prezentăm atât la nivel micro, din punct de vedere al modulelor ce o alcătuiesc, cât și holistic, prin efectuarea unor teste și prin evaluări ale rezultatelor.
+
+Astfel, scopul intrinsec al platformei este de a reprezenta o soluție software cu sursă deschisă (engl. "\textit{open-source}"), ușor adaptabilă contextului dinamic al securității cibernetice, ce poate fi folosită pentru apărarea detrimentului virtual al unei organizații. Ea este ușor de gestionat într-o infrastructură modernă, integrabilă cu alte sisteme datorită existenței unor interfețe programabile și permite dezvoltarea ulterioară, prin oferirea unor interfețe pentru modulele componente.
+
+Concret, ea automatizează modul de lucru specific analizei datelor pentru stabilirea unor euristici cu ajutorul cărora să poată fi scanate fișiere. În acest moment, suportă numai sistemul de operare Windows și formatele executabile, \textit{Portable Executable} (abreviat PE), și cele Office, \textit{Object Linking and Embedding} (abreviat OLE). Platforma ajută analiștii pentru luarea unor decizii rapide cu privire la exemplare malițioase întâmpinate și pentru crearea unor premise (maliție, familii de programe malițioase și fișiere similare) de la care ei să înceapă o analiză profundă. Alți beneficiari din cadrul organizației sunt ceilalți angajați, care își pot scana cu ușurință, prin intermediul unei interfețe facile, fișierele pe care le folosesc în munca lor de zi cu zi.
+
+\section{Structura pe Capitole}
+\label{sec:introduction_chapters}
+
+Lucrarea este împărțită în \textbf{șase capitole}. Primul, cel de față, prezintă contextul general al securității cibernetice, problemele pe care le considerăm esențiale motivării eforturilor noastre și obiectivele lucrării. Capitolul al doilea prezintă noțiuni teoretice, plecând de la cele generice, despre știința calculatoarelor și ajungând până la formatele de fișiere procesate automat, și anume PE și OLE. Urmează noțiuni despre analiza de programe malițioase, inteligență artificială și, în ultimă instanță, despre alte tematici ce au fost folosite în dezvoltarea soluției software.
+
+Începând cu al treilea capitol, prezentăm modul în care platforma de analiză automată a fost proiectată. Cerințele funcționale și nefuncționale vor reprezenta fundația modulelor detaliate în continuarea capitolului, ce se încheie cu modalitatea de testare. În cel de-al patrulea capitol, expunem metodologia de evaluare a platformei dezvoltate, cât și rezultatele acesteia.
+
+În penultimul capitol, concluzionăm cele expuse în toate capitolele anterioare și trasăm idei cu privire la dezvoltarea ulterioară a platformei. Ultimul, cel de-al șaselea, este cel de bibliografie.
+
+\end{document}

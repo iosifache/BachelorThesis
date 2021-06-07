@@ -1,0 +1,66 @@
+\documentclass[../../main.tex]{subfiles}
+
+\graphicspath{{\subfix{images/}}}
+
+\begin{document}
+
+\chapter{Concluzii și Dezvoltare Ulterioară}
+\label{ch:conclusions}
+
+Am demonstrat în această lucrare posibilitatea folosirii tehnicilor de inteligență artificială în analiza automată de programe. În cadrul unei soluții software, am îmbinate tehnicile specifice analizei de fișiere, ce constau în acest context în extragerea automată de atribute relevante din fișiere, cu cele de inginerie a datelor, și anume lucrul cu seturile de date, preprocesarea atributelor extrase din exemplare, reducerea dimensionalității, antrenarea și evaluarea unor algoritmi de învățare automată.
+
+\section{Situația Curentă}
+\label{sec:conclusions_status}
+
+\textbf{Implementarea curentă} a soluției software \textbf{respectă obiectivele} stabilite în capitolul \ref{sec:introduction_objectives} și acoperă o proporție foarte mare din fiecare dintre cerințele funcționale și nefuncționale stabilite în capitolul \ref{sec:platform_requirements}. Acest ultim aspect va fi detaliat în secțiunea specifică dezvoltării ulterioare, de unde vor reieși sincopele existente.
+
+Vom lista în continuare realizările obținute în această lucrare:
+
+\begin{itemize}
+    \item Crearea unui \textbf{set de date etichetate}, cu programe malițioase, ce a fost postat \textit{online} pentru a permite utilizarea lui liberă și eventuale îmbunătă\-țiri datorate comunității;
+    \item Crearea de \textbf{metode automate de extragere a unor atribute} relevante din fișiere cu format PE și OLE;
+    \item Crearea unui \textbf{proces automatizat de inginerie a datelor}, cu pași de preprocesare, reducere a dimensionalității, antrenare și evaluare de modele de învățare automată;
+    \item Integrarea celor menționate în cadrul unei platforme, care oferă următoare\-le \textbf{beneficii}:
+    \begin{itemize}
+        \item Pentru \textbf{specialiștii în securitate cibernetică}, scanarea de fișiere malițioase pentru detecția maliției, clasificare și analiză de similaritate, plus posibilitatea de publicare a rezultatelor analizelor amănun\-țite, ale căror detalii sunt luate în considerare în cadrul reantrenărilor manuale sau programate a modelelor;
+        \item Pentru \textbf{utilizatorii normali}, scanarea de fișiere executabile și Office printr-o interfață facilă.
+        \item Pentru \textbf{administratorul de platformă}, oferirea unei interfețe pu\-ternic înzestrată cu funcționalități, ce permite gestionarea holistică a proceselor din platformă;
+        \item Pentru \textbf{administratorii de sistem}, \textbf{gestionarea ușoară} a platformei într-o infrastructură modernă și \textbf{optimizarea folosirii resur\-selor}, prin paralelizare și distribuirea sarcinilor cu ajutorul infrastructurii cu lider și subordonați;
+        \item Pentru \textbf{organizație}, \textbf{posibilitate de integrare cu alte soluții software}, datorită API-ului, și \textbf{costuri minime}, datorită caracterului de sursă deschisă; și
+    \end{itemize}
+    \item Integrarea soluției software dezvoltate în cadrul unui \textbf{proiect de cer\-cetare} al Academiei Tehnice Militare "\textit{Ferdinand I}" București.
+\end{itemize}
+
+Din punct de vedere al modelelor ce au fost antrenate în cadrul platformei, subliniem trei rezultate bune, exprimate în rădăcina erorii medie pătratice:
+
+\begin{itemize}
+    \item Aproximativ $ 0.01 $ pentru \textbf{modelul de regresie a maliției pentru fișiere OLE}, cu antrenare pe un set de date mare și cu toate atributele (relativ la tehnicile implementate) extrase;
+    \item $ 0.0743 $ pentru \textbf{modelul de regresie a maliției pentru fișiere PE}, cu analiză a atributelor extrase static, fără ajutorul dezasambloarelor; și
+    \item $ 0.0139 $ și $ 0.0068 $ pentru \textbf{modelul de clasificare a programelor maliți\-oase de tip \textit{encrypter} și \textit{backdoor}}, folosind toate atributele statice (relativ la tehnicile implementate) extrase.
+\end{itemize}
+
+\section{Dezvoltare Ulterioară}
+\label{sec:conclusions_further_dev}
+
+Această secțiune cuprinde aspectele pe care le vom avea în considerare în \textbf{dezvoltarea ulterioară} a lucrării și a soluției software implementate.
+
+\subsection{Îmbunătățiri}
+
+\begin{itemize}
+    \item \textbf{Echilibrarea setului de date}, prin asigurarea unui raport egal între fișierele malițioase și cele benigne și a unui număr egal de fișiere per familie de programe malițioase
+    \item \textbf{Extinderea funcționalității extractorilor dinamici} bazați pe Qiling, care suportă în momentul de față un număr redus de fișiere din cauza apelurilor de sistem neimplementate
+    \item \textbf{Refactorizarea codului}, inclusiv prin simplificarea anumitor clase și metode
+    \item \textbf{Continuarea optimizărilor}, prin rularea dezasamblorului Ghidra pe mai multe fire de execuție și prin păstrarea în memorie a seturilor de date pentru a crește viteza lor de procesare
+\end{itemize}
+
+\subsection{Funcționalități Noi}
+
+\begin{itemize}
+    \item Crearea unei \textbf{fabrici de seturi de date}, posibil cu ajutorul unei integrări cu VirusTotal Intelligence\footnote{\href{https://www.virustotal.com/gui/intelligence-overview}{https://www.virustotal.com/gui/intelligence-overview}}
+    \item Crearea unor \textbf{extractori noi cu tehnici de analiză dinamică} (de e\-xemplu, pentru lucru cu sistemul de fișiere, activitate la nivel de rețea și de regiștrii)
+    \item Studierea \textbf{scalării soluției la organizațiile mari}
+\end{itemize}
+
+\newpage \
+
+\end{document}

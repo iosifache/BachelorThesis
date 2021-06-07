@@ -1,0 +1,104 @@
+\documentclass[../../main.tex]{subfiles}
+
+\graphicspath{{\subfix{images/}}}
+
+\begin{document}
+
+\chapter{Evaluarea Performanțelor}
+\label{ch:evaluation}
+
+Odată finalizate proiectarea, implementarea și testarea, am continuat cu eva\-luarea performanțelor platformei. Cum principalul scop al acestei lucrări este de a detalia o posibilă abordare în ceea ce privește implementarea unei soluții software pentru analiza automată de programe malițioase folosind tehnici de inteligență artificială, nu am pus accentul pe optimizarea la maxim, din punct de vedere al timpului de execuție, a diferitelor operațiuni ce pot fi deprinse în cadrul platformei. În schimb, am urmărit o implementare corectă, cu rezultate cât mai bune în ceea ce privește procesul de analiză.
+
+\section{Seturi de Date Folosite}
+\label{sec:evaluation_datasets}
+
+Pentru efectuarea evaluării performanțelor, am creat în primă instanță, cu ajutorul interfeței în linie de comandă destinate administratorilor platformei, \textbf{5 seturi de date}. În funcție de tipul de model care le va folosi, parametrii configurabili ai acestora variază conform tabelului \ref{tab:datasets_configuration}.
+
+Seturile de date cu număr mic de fișiere incluse sunt destinate modelelor ce au incluși extractori intensivi computațional (\inlinecode{StaticOpcodes} și \inlinecode{StaticAPIs}), pentru a asigura un timp de antrenare (dintre care extragerea de atribute acoperă cea mai semnificativă parte) relativ mic.
+
+Majoritatea seturilor de date nu limitează fișierele incluse la anumite familii de programe malițioase. Excepție face ultimul, \inlinecode{PE\_BACKDOOR\_VS\_ENCRYPTER}, care este folosit pentru diferențierea dintre programele de tip \textit{Backdoor} și cele de tip \textit{Encrypter}.
+
+\begin{landscape}
+    \vspace*{\fill}
+    \input{components/tables/datasets_configuration}
+    \vspace*{\fill}
+\end{landscape}
+
+\section{Modele Antrenate}
+\label{sec:evaluation_models}
+
+În continuare, după finalizarea creării seturilor de date, am antrenat cu ajutorul aceleiași interfețe în linie de comandă \textbf{6 modele de învățare automată}. Din punct de vedere al obiectivelor lor, 4 dintre ele se ocupă cu regresia maliției (2 pentru formatul PE și 2 pentru OLE) și 2 pentru clasificarea în familii de programe malițioase, mai concret specializate în diferențierea dintre exemplarele de tip \textit{Backdoor} și cele de tip \textit{Encrypter}. Configurațiile lor sunt prezentate în tabelele \ref{tab:small_ole_configuration} - \ref{tab:pe_static_full_classification_configuration}.
+
+\vspace{0.3cm}
+\input{components/tables/small_ole_configuration}
+\vspace{0.3cm}
+\input{components/tables/large_ole_configuration}
+\vspace{0.3cm}
+\input{components/tables/pe_static_fast_malice_configuration}
+\newpage
+
+\input{components/tables/pe_static_full_malice_configuration}
+\vspace{0.3cm}
+\input{components/tables/pe_static_fast_classification_configuration}
+\vspace{0.3cm}
+\input{components/tables/pe_static_full_classification_configuration}
+\vspace{0.3cm}
+
+Diferențele dintre cele două modele pe fiecare pereche menționată de obiectiv - format constau în dimensiunea setului de date utilizat și/sau în extractorii și preprocesoarele folosite. Am dorit să observăm prin aceste variații diferențele ce apar în metricile considerate, de evaluare a performanțelor, prin prisma noilor informații deduse de către algoritmul de învățare automată, din exemplarele și/sau atributele suplimentare.
+
+\section{Evaluarea Performanțelor Modelelor}
+\label{sec:evaluation_evaluation}
+
+De menționat este faptul că înainte de antrenarea modelelor de mai sus, am efectuat o comparație între performanțele unui model asemănător celui cu codul de identificare \inlinecode{PE\_STATIC\_FAST\_MALICE}, în care am variat prima oară tipul de algoritm de reducere a dimensionalității. Conform cu tabelul \ref{tab:reduction_algorithms_analysis}, am observat faptul că \textbf{algoritmul PCA} oferă cele mai bune rezultate considerând cele mai relevante două metrici de evaluare, și anume rădăcina erorii medie pătratice și scorul $ R^2 $.
+
+Am procedat în aceeași manieră și la alegerea algoritmului de învățare a\-utomată, folosind aceeași configurație, dar în care am fixat PCA ca algoritm de reducere a dimensionalității și l-am variat pe cel de învățare automată. Astfel, am stabilit pe baza informațiilor din tabelul \ref{tab:ml_algorithms_analysis} faptul că toate modelele ale căror performanțe vor fi expuse în acest capitol trebuie să folosească PCA, cu variația minimă înglobată în caracteristicile selectate de $ 0.999999 $, și \textbfit{Random Forest}, cu un raport dintre numărul de exemplare folosite pentru antrenare și a dimensiunii întregului set de date de $ 0.8 $.
+
+\textbf{Am evaluat automat} cele 6 modele de inteligență artificială, prin intermediul modulului specific de gestionare. Am listat în tabelele \ref{tab:regresion_evaluation}, \ref{tab:pe_static_fast_classification_evaluation} și \ref{tab:pe_static_full_classification_evaluation} rezultatele obținute. Întrucât în cazul modelelor de clasificare a fost nevoie să efectuăm o dublă relativizare, am ales cele două atribute pe care este specializat setul de date \inlinecode{PE\_BACKDOOR\_VS\_ENCRYPTER} și pragul de binarizare de $ 0.1 $.
+
+\begin{landscape}
+    \vspace*{\fill}
+    \input{components/tables/reduction_algorithms_analysis}
+    \input{components/tables/ml_algorithms_analysis}
+    \input{components/tables/regresion_evaluation}
+    \vspace*{\fill}
+\end{landscape}
+
+\input{components/tables/pe_static_fast_classification_evaluation}
+\vspace{0.3cm}
+\input{components/tables/pe_static_full_classification_evaluation}
+
+\subsection{Regresia Maliției}
+
+Pentru \textbf{modelele de regresie a maliției} pentru formatul O LE, am observat din valorile erorilor maxime faptul că nu există discrepanțe în ceea ce privește predicția maliției. Nu apar scenarii cu eroare maximă mare (de exemplu, mai mare de $ 0.5 $), în care modelul să fi prezis despre un fișier malițios (cu maliție apropiată de 1) că este benign (cu maliție apropiată de 0) sau viceversa. Modelul \inlinecode{LARGE\_OLE}, ce a dispus de un set de date de date mai mare, dar neechilibrat corespunzător, prezintă valori mai mici ale erorilor și una aproape egală (cu diferență de numai $ 0.13\% $) pentru scorul $ R^2 $.
+
+Pentru formatul PE, erorile maxime indică apariția tipului de discrepanțe, menționat în cazul modelelor antrenate pentru formatul OLE. Eroarea medie absolută și rădăcina erorii medie pătratice au valori scăzute, iar scorurile $ R^2 $ sunt apropiate de $ 1 $. Pe de altă parte, prin comparație între modelele \inlinecode{PE\_STATIC\_FAST\_MALICE} și \inlinecode{PE\_STATIC\_FULL\_MALICE}, putem observa prin scăde\-rea performanțelor faptul că un număr mai mare de atribute oferite celui de-al doilea model (și anume statisticile referitoare la grupurile de coduri de operație și de apeluri de sistem, rezultate în urma analizei cu Ghidra) nu compensează diferența în exemplarele analizate (de 800 de fișiere, dintre care 400 benigne și 400 malițioase).
+
+\subsection{Clasificare în Familii de Programe Malițioase}
+
+\textbf{Modelele de clasificare} prezintă aceleași valori ale metricilor de evaluare a perfor\-manței, specifice clasificării și aplicate după binarizarea rezultatului continuu, în ciuda numărului mai mare de atribute procesate și a folosirii aceluiași set de date. Pe de altă parte, observăm mici îmbunătățiri în privința metricilor specifice regresie.
+
+Valorile întregi $ 0 $ și $ 1 $ sunt cauzate de faptul că cele două clase, \textit{Backdoor} și \textit{Encrypter}, sunt reprezentate necorespunzător în setul de date. Toate exemplarele selectate, deși sunt cele mai reprezentative pentru clasele menționate, au valori mici ale etichetelor, ceea ce provoacă o clasificare necorespunzătoare după binarizare.
+
+\section{Evaluarea Performanțelor Analizei de Similaritate}
+\label{sec:evaluation_similarity_evaluation}
+
+Pentru \textbf{evaluarea ultimului obiectiv} pe care îl poate servi un model antrenat, am efectuat o serie de pași care să ne indice faptul că acesta funcționează corespunzător. Din cauza dificultății de cuantizare a rezultatelor, ce nu apărea și în cazul obiectivelor evaluate anterior, metodologia a implicat o abordare semi-automată după cum urmează.
+
+\newpage
+
+În primul rând, am creat manual un set de date cu 9 exemplare, dintre care:
+
+\begin{itemize}
+    \item \textbfit{8 cu entropie mai mare de $7.9$}: Acest lucru indică împachetarea executabilului\footnote{\fullcite{entropy_analysis}} și implică un număr mic de șiruri de caractere printabile (în medie, $46.5$ de astfel de șiruri cu lungimea mai mare de 9 caractere).
+    \item \textbfit{Unul cu entropie $5.784$}: Entropia mică indică lipsa împachetării, de unde și numărul mare de șiruri de caractere printabile cu lungime mai mare de 9 caractere, de 85.
+\end{itemize}
+
+Numărul mic de exemplare nu a fost ales pentru a ajuta algoritmul de învățare să obțină performanțe ridicate, ci numai pentru a observa dacă va reuși să diferențiere cele două tipuri de fișiere incluse pe baza atributelor lor.
+
+Am antrenat apoi un model de regresie a maliției (ce avea inclus automat și obiectivul de analiză de similaritate) cu un singur extractor, \inlinecode{StaticStrings}, și cu preprocesorul \inlinecode{NGrams} atașat. Configurația reducerii dimensionalității și a antrenării a fost identică celei ale modelelor analizate anterior.
+
+Am scanat apoi un fișier din setul de date al platformei, cu entropia $ 6.4 $ și 29 de șiruri de caractere printabile cu lungime mai mare de 9. Rezultatul returnat a indicat cea mai mare similaritate pentru fișierul cu entropia cea mai mică din setul de date, de unde reiese reușita modelului de a deduce asemănări între valorile atributelor.
+
+\newpage \
+
+\end{document}

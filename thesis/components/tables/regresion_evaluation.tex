@@ -1,0 +1,17 @@
+\begin{table}[!htb]
+    \centering
+    \resizebox{19.5cm}{!}{
+        \begin{tabular}{ | p{0.34\linewidth} | p{0.13\linewidth} | p{0.2\linewidth} | p{0.25\linewidth} | p{0.08\linewidth} | }
+            \hline
+            ID & Eroare maximă & Eroare medie absolută & Rădăcina erorii medie pătratice & Scorul $ R^2 $ \\
+        \hline
+        \inlinecode{SMALL\_OLE} & 0.043 & 0.0104 & 0.014 & 0.9985 \\
+        \inlinecode{LARGE\_OLE} & 0.0384 & 0.0068 & 0.0097 & 0.9972 \\
+        \inlinecode{PE\_STATIC\_FAST\_MALICE} & 0.7169 & 0.0303 & 0.0743 & 0.974 \\
+        \inlinecode{PE\_STATIC\_FULL\_MALICE} & 0.5137 & 0.1155 & 0.1702 & 0.8595 \\
+        \hline
+        \end{tabular}
+    }
+    \caption{Evaluarea Modelelor de Regresie a Maliției}
+    \label{tab:regresion_evaluation}
+\end{table}
