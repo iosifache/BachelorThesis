@@ -44,6 +44,7 @@
 \renewcommand*\contentsname{Tabelă de Conținut}
 \renewcommand*\listfigurename{Listă de Imagini}
 \renewcommand*\figurename{Imagine}
+\captionsetup[table]{name=Tabel}
 
 % Header and footer styles and their appliances on different generated components
 \renewcommand{\headrulewidth}{1pt}
@@ -87,7 +88,7 @@
 \newcommand{\detailauthor}{}
 \newcommand{\detailadviser}{}
 
-% Commands for setting the details
+% Commands for setting the configuration
 \newcommand{\setdetaildate}[1]{\renewcommand{\detaildate}{#1}}
 \newcommand{\setdetailcountry}[1]{\renewcommand{\detailcountry}{#1}}
 \newcommand{\setdetailcity}[1]{\renewcommand{\detailcity}{#1}}
@@ -98,9 +99,15 @@
 \newcommand{\setdetailtitle}[1]{\renewcommand{\detailtitle}{#1}}
 \newcommand{\setdetailauthor}[1]{\renewcommand{\detailauthor}{#1}}
 \newcommand{\setdetailadviser}[1]{\renewcommand{\detailadviser}{#1}}
+\newcommand{\showinventary}{\newcommand{\componentinventary}{}}
+\newcommand{\showadviserresume}{\newcommand{\componentadviserresume}{}}
+\newcommand{\showspecification}{\newcommand{\componentspecification}{}}
+\newcommand{\disablebold}{\newcommand{\disabledbold}{}}
 
-% User's details
-\input{details}
+% User's configuration
+\input{configuration}
 
-% Observations:
-% 1. For bold disabling, use the following command: \renewcommand{\textbf}{\normaltext}
+% Bold disabling
+\ifdefined\disabledbold
+    \renewcommand{\textbf}{\normaltext}
+\fi

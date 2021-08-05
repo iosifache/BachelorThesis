@@ -22,19 +22,23 @@
 
         \normalsize
         \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-            \textbf{Conducător Științific} & \textbf{Absolvent}\\
+            \textbf{Coordonator Științific} & \textbf{Absolvent}\\
             \footnotesize \detailadviser & \footnotesize \detailauthor
         \end{tabular*}
 
-        \vspace*{1.5cm}
-
-        \small
-        \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-            & \small Conține \rule{1cm}{0.1pt} file \\
-            & \small Inventariat sub numărul \rule{1cm}{0.1pt} \\
-            & \small Cu pozitia din indicator \rule{1cm}{0.1pt} \\
-            & \small Cu termen de păstrare \rule{2cm}{0.1pt}
-        \end{tabular*}
+        \ifdefined\componentinventary
+            \vspace*{1.5cm}
+            
+            \small
+            \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+                & \small Conține \rule{1cm}{0.1pt} file \\
+                & \small Inventariat sub numărul \rule{1cm}{0.1pt} \\
+                & \small Cu poziția din indicator \rule{1cm}{0.1pt} \\
+                & \small Cu termen de păstrare \rule{2cm}{0.1pt}
+            \end{tabular*}
+        \else
+            \vspace*{3cm}
+        \fi
 
         \vspace*{1.5cm}
         \textbf{\detailcity} \\

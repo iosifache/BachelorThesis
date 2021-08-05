@@ -10,7 +10,14 @@
 
 % Adviser's resume
 \setcounter{page}{1}
-\input{components/frontmatter/adviser_resume}
+\ifdefined\componentadviserresume
+    \input{components/frontmatter/adviser_resume}
+\fi
+
+% Specification
+\ifdefined\componentspecification
+    \input{components/frontmatter/specification}
+\fi
 
 % Abstract
 \input{components/frontmatter/abstract}

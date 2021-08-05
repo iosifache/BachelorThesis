@@ -30,6 +30,7 @@
 
 % Custom labels
 \addto\captionsenglish{\renewcommand{\figurename}{Imagine}}
+\captionsetup[table]{name=Tabel}
 
 % Custom command for bold and italic text
 \newcommand{\textbfit}[1]{\textbf{\textit{#1}}}
@@ -38,6 +39,11 @@
 \newenvironment{codeenv}{\fontfamily{cmtt}\selectfont}{\par}
 \DeclareTextFontCommand{\inlinecodenonboxed}{\codeenv}
 \newcommand{\inlinecode}[1]{\mbox{\inlinecodenonboxed{#1}}}
+
+% Custom command for shortening the presentation
+\newif\ifshowextras
+\showextrasfalse
+\newcommand{\extras}[1]{\ifshowextras #1 \fi}
 
 % Details about the thesis
 \newcommand{\detaildate}{}
@@ -63,5 +69,5 @@
 \newcommand{\setdetailauthor}[1]{\renewcommand{\detailauthor}{#1}}
 \newcommand{\setdetailadviser}[1]{\renewcommand{\detailadviser}{#1}}
 
-% User's details
-\input{details}
+% User's configuration
+\input{configuration}

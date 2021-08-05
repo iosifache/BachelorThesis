@@ -400,7 +400,7 @@ Funcțiile de similaritate pot fi:
 
 \begin{enumerate}
     \item \textbfit{Cosinus}: $ s(x_1, x_2) = \frac{x_1 \cdot x_2}{\parallel x_1 \parallel \cdot \parallel x_2 \parallel} $
-    \item \textbfit{Cosinus ajustat}: $ s(x_1, x_2) = \frac{(x_1 - \parallel x_1 \parallel) \cdot (x_2 - \parallel x_2 \parallel)}{\parallel x_1 - x_m \parallel \cdot \parallel B - x_m \parallel} $, unde $ x_m $ este vectorul medie al tuturor exemplarelor
+    \item \textbfit{Cosinus ajustat}: $ s(x_1, x_2) = \frac{(x_1 - \parallel x_1 \parallel) \cdot (x_2 - \parallel x_2 \parallel)}{\parallel x_1 - x_m \parallel \cdot \parallel x_2 - x_m \parallel} $, unde $ x_m $ este vectorul medie al tuturor exemplarelor
     \item \textbfit{Pearson}: Definită ca $ s(x_1, x_2) = \frac{(x_1 - \parallel x_1 \parallel) \cdot (x_2 - \parallel x_2 \parallel)}{\parallel x_1 - \parallel x_1 \parallel \parallel \cdot \parallel x_2 - \parallel x_2 \parallel \parallel} $, această metrică de similaritate corespunde și coeficientului de corelație Pearson. Avantajul principal îl reprezintă abilitatea sa de a scăpa de tendința unor exemplare de a avea valori mai mari pentru toate caracteristicile considerate. Pe lângă aceasta, asemănător similarității cosinusului ajustat, evită situațiile în care o valoare mare a unui atribut are o pondere prea mare asupra valorii finale a similarității, prin scăderea mediei din vectorii de atribute.
 \end{enumerate}
 
